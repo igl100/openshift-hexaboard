@@ -15,12 +15,12 @@
     "parameters": [
         {
             "description": "OpenShift OAuth token (REQUIRED)",
-            "value": "Missing!",
+            "value": "5LW5Mj5IXlzGGomgiLReqDcdnJzgfPXmvTYGhffFYgQ",
             "name": "ACCESS_TOKEN"
         },
         {
             "description": "builder image",
-            "value": "nodejs:latest",
+            "value": "nodejs:4",
             "name": "BUILDER_IMAGE"
         },
         {
@@ -378,7 +378,13 @@
                                         "protocol": "TCP"
                                     }
                                 ],
-                                "resources": {},
+                                "resources": 
+                                    {
+                                        "limits": 
+                                             {
+                                                "memory": "8Gi"
+                                             }
+                                    },
                                 "terminationMessagePath": "/dev/termination-log",
                                 "imagePullPolicy": "Always",
                                 "securityContext": {
