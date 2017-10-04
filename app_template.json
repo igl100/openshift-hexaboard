@@ -100,7 +100,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "http://github.com/2015-Middleware-Keynote/sketchpod"
+                        "uri": "https://github.com/igl100/openshift-hexaboard.git"
                     }
                 },
                 "strategy": {
@@ -273,7 +273,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "http://github.com/ryanj/hexboard",
+                        "uri": "https://github.com/igl100/openshift-hexaboard.git",
                         "ref": "master"
                     }
                 },
