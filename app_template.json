@@ -15,7 +15,7 @@
     "parameters": [
         {
             "description": "OpenShift OAuth token (REQUIRED)",
-            "value": "5LW5Mj5IXlzGGomgiLReqDcdnJzgfPXmvTYGhffFYgQ",
+            "value": "Missing!",
             "name": "ACCESS_TOKEN"
         },
         {
