@@ -11,7 +11,7 @@ metadata:
     tags: instant-app,nodejs
 parameters:
 - description: OpenShift OAuth token (REQUIRED)
-  value: Missing!
+  value: L8PtuO7BfpxqbIH0e6hSD46Qanl9CCvyB-cMRP8uoOw
   name: ACCESS_TOKEN
 - description: builder image
   value: nodejs:4
@@ -150,133 +150,14 @@ objects:
       deploymentconfig: sketchpod
     portalIP: ''
     type: ClusterIP
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: hexboard
-    creationTimestamp: 
-  spec: {}
-  status:
-    dockerImageRepository: ''
-- kind: BuildConfig
-  apiVersion: v1
-  metadata:
-    name: hexboard
-    creationTimestamp: 
-  spec:
-    triggers:
-    - type: GitHub
-      github:
-        secret: "${GITHUB_WEBHOOK_SECRET}"
-    - type: Generic
-      generic:
-        secret: "${GENERIC_WEBHOOK_SECRET}"
-    - type: ImageChange
-      imageChange: {}
-    source:
-      type: Git
-      git:
-        uri: https://github.com/igl100/openshift-hexaboard.git
-        ref: master
-    strategy:
-      type: Source
-      sourceStrategy:
-        from:
-          kind: ImageStreamTag
-          namespace: openshift
-          name: "${BUILDER_IMAGE}"
-    output:
-      to:
-        kind: ImageStreamTag
-        name: hexboard:latest
-    resources: {}
-  status:
-    lastVersion: 0
-- kind: DeploymentConfig
-  apiVersion: v1
-  metadata:
-    name: hexboard
-    creationTimestamp: 
-  spec:
-    strategy:
-      type: Recreate
-      resources: {}
-    triggers:
-    - type: ConfigChange
-    - type: ImageChange
-      imageChangeParams:
-        automatic: true
-        containerNames:
-        - hexboard
-        from:
-          kind: ImageStreamTag
-          name: hexboard:latest
-    replicas: 1
-    selector:
-      deploymentconfig: hexboard
-    template:
-      metadata:
-        creationTimestamp: 
-        labels:
-          deploymentconfig: hexboard
-      spec:
-        containers:
-        - name: hexboard
-          image: hexboard:latest
-          livenessProbe:
-            httpGet:
-              path: "/status"
-              port: 8080
-            timeoutSeconds: 5
-            initialDelaySeconds: 30
-          env:
-          - name: HEXBOARD_SIZE
-            value: "${HEXBOARD_SIZE}"
-          - name: WINNER_COUNT
-            value: "${WINNER_COUNT}"
-          - name: ADMIN_TOKEN
-            value: "${ADMIN_TOKEN}"
-          - name: ACCESS_TOKEN
-            value: "${ACCESS_TOKEN}"
-          ports:
-          - name: hexboardtcp
-            containerPort: 8080
-            protocol: TCP
-          resources:
-            limits:
-              memory: 8Gi
-          terminationMessagePath: "/dev/termination-log"
-          imagePullPolicy: Always
-          securityContext:
-            capabilities: {}
-            privileged: false
-        restartPolicy: Always
-        dnsPolicy: ClusterFirst
-  status: {}
-- kind: Service
-  apiVersion: v1
-  metadata:
-    name: hexboard
-    creationTimestamp: 
-  spec:
-    ports:
-    - name: hexboardtcp
-      protocol: TCP
-      port: 8080
-      targetPort: 8080
-      nodePort: 0
-    selector:
-      deploymentconfig: hexboard
-    portalIP: ''
-    type: ClusterIP
 - kind: Route
   apiVersion: v1
   metadata:
-    name: hexboard
+    name: sketchpod
     creationTimestamp: 
   spec:
     host: ''
     to:
       kind: Service
-      name: hexboard
+      name: sketchpod
   status: {}
