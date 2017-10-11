@@ -25,7 +25,7 @@ module.exports = exports = {
 
   cors: function (req, res, next) {
 	var origin = req.headers['origin'];
-	if(origin != null){
+	if(origin != null){ 
 		res.header('Access-Control-Allow-Origin', origin);
 	}else{  
     		res.header('Access-Control-Allow-Origin', '*');
