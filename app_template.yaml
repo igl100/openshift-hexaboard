@@ -11,7 +11,7 @@ metadata:
     tags: instant-app,nodejs
 parameters:
 - description: OpenShift OAuth token (REQUIRED)
-  value: L8PtuO7BfpxqbIH0e6hSD46Qanl9CCvyB-cMRP8uoOw
+  value: cV8xFZDY-BOYCwFmNnrDEylUdHwU8Gz3Zt9ooXUoTsQ
   name: ACCESS_TOKEN
 - description: builder image
   value: nodejs:4
@@ -65,7 +65,7 @@ objects:
     source:
       type: Git
       git:
-        uri: https://github.com/igl100/openshift-hexaboard.git
+        uri: https://github.com/jorgecanoc/hexboard.git
     strategy:
       type: Source
       sourceStrategy:
