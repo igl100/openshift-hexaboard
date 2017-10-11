@@ -25,11 +25,11 @@ module.exports = exports = {
 
   cors: function (req, res, next) {
 	var origin = req.headers['origin'];
-	if(origin != null || origin.size > 0){
+	//if(origin != null || origin.size > 0){
 		res.header('Access-Control-Allow-Origin', origin);
-	}else{
+	/*}else{
     		res.header('Access-Control-Allow-Origin', '*');
-    }
+    }*/
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
